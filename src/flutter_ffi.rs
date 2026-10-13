@@ -2505,15 +2505,15 @@ pub fn main_support_remove_wallpaper() -> bool {
 }
 
 pub fn is_incoming_only() -> SyncReturn<bool> {
-    SyncReturn(config::is_incoming_only())
+    SyncReturn(true)
 }
 
 pub fn is_outgoing_only() -> SyncReturn<bool> {
-    SyncReturn(config::is_outgoing_only())
+    SyncReturn(false)
 }
 
 pub fn is_custom_client() -> SyncReturn<bool> {
-    SyncReturn(crate::common::is_custom_client())
+    SyncReturn(true)
 }
 
 pub fn is_disable_settings() -> SyncReturn<bool> {

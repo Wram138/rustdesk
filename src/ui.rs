@@ -289,15 +289,15 @@ impl UI {
     }
 
     fn is_incoming_only(&self) -> bool {
-        hbb_common::config::is_incoming_only()
+        true
     }
 
     pub fn is_outgoing_only(&self) -> bool {
-        hbb_common::config::is_outgoing_only()
+        false
     }
 
     pub fn is_custom_client(&self) -> bool {
-        crate::common::is_custom_client()
+        true
     }
 
     pub fn is_disable_settings(&self) -> bool {

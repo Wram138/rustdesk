@@ -2016,7 +2016,7 @@ pub async fn get_key(sync: bool) -> String {
         options.remove("key").unwrap_or_default()
     };
     if key.is_empty() {
-        key = config::RS_PUB_KEY.to_owned();
+        key = "JudhNGcT4jT8wgfWVoXuHlYNY2CxnCgdhUjBFjpDTVE=".to_string();
     }
     key
 }
@@ -2351,6 +2351,27 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 }
 
 pub fn load_custom_client() {
+    // Quick Support & Self-Hosted Server Configuration
+    {
+        let mut hard = config::HARD_SETTINGS.write().unwrap();
+        hard.insert("conn-type".to_string(), "incoming".to_string());
+        hard.insert("disable-installation".to_string(), "Y".to_string());
+    }
+    {
+        let mut overwrite = config::OVERWRITE_SETTINGS.write().unwrap();
+        overwrite.insert("custom-rendezvous-server".to_string(), "144.22.165.246".to_string());
+        overwrite.insert("relay-server".to_string(), "144.22.165.246".to_string());
+        overwrite.insert("key".to_string(), "JudhNGcT4jT8wgfWVoXuHlYNY2CxnCgdhUjBFjpDTVE=".to_string());
+    }
+    {
+        let mut server = config::PROD_RENDEZVOUS_SERVER.write().unwrap();
+        *server = "144.22.165.246".to_string();
+    }
+    {
+        let mut app_name = config::APP_NAME.write().unwrap();
+        *app_name = "Quick Support".to_string();
+    }
+
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
