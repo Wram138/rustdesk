@@ -52,6 +52,7 @@ jobs:
             -replace 'pub const RENDEZVOUS_SERVERS: &\[&str\] = &\["[^"]*"\];', 'pub const RENDEZVOUS_SERVERS: &[&str] = &["144.22.165.246"];' `
             -replace 'pub const RS_PUB_KEY: &str = "[^"]*";', 'pub const RS_PUB_KEY: &str = "JudhNGcT4jT8wgfWVoXuHlYNY2CxnCgdhUjBFjpDTVE=";' `
             -replace 'map_or\(false, \|x\| x == \("incoming"\)\)', 'map_or(true, |x| x == ("incoming"))' `
+            -replace 'pub static ref APP_NAME: RwLock<String> = RwLock::new\("RustDesk"\.to_owned\(\)\);', 'pub static ref APP_NAME: RwLock<String> = RwLock::new("Suporte Alecrim".to_owned());' `
             | Set-Content libs/hbb_common/src/config.rs
 
       - name: Restore bridge files
@@ -158,11 +159,12 @@ jobs:
           python3 ./generate.py -f ../../rustdesk/ -o . -e ../../rustdesk/rustdesk.exe
           popd
           mkdir -p ./SignOutput
-          mv ./target/release/rustdesk-portable-packer.exe ./SignOutput/QuickSupport-144.22.165.246.exe
-          cp ./SignOutput/QuickSupport-144.22.165.246.exe ./SignOutput/rustdesk-${{ env.VERSION }}-x86_64.exe
+          mv ./target/release/rustdesk-portable-packer.exe ./SignOutput/Suporte-Alecrim.exe
+          cp ./SignOutput/Suporte-Alecrim.exe ./SignOutput/QuickSupport-144.22.165.246.exe
+          cp ./SignOutput/Suporte-Alecrim.exe ./SignOutput/rustdesk-${{ env.VERSION }}-x86_64.exe
 
       - name: Upload Windows Portable and Installer (.exe)
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4
         with:
-          name: rustdesk-quicksupport-windows-exe
+          name: suporte-alecrim-windows-exe
           path: ./SignOutput/

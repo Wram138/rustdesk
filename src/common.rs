@@ -2372,7 +2372,7 @@ pub fn load_custom_client() {
     }
     {
         let mut app_name = config::APP_NAME.write().unwrap();
-        *app_name = "Quick Support".to_string();
+        *app_name = "Suporte Alecrim".to_string();
     }
 
     #[cfg(debug_assertions)]
