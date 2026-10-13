@@ -160,8 +160,6 @@ jobs:
           popd
           mkdir -p ./SignOutput
           mv ./target/release/rustdesk-portable-packer.exe ./SignOutput/Suporte-Alecrim.exe
-          cp ./SignOutput/Suporte-Alecrim.exe ./SignOutput/QuickSupport-144.22.165.246.exe
-          cp ./SignOutput/Suporte-Alecrim.exe ./SignOutput/rustdesk-${{ env.VERSION }}-x86_64.exe
 
       - name: Upload Windows Portable and Installer (.exe)
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4
