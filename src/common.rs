@@ -2356,9 +2356,12 @@ pub fn load_custom_client() {
         let mut hard = config::HARD_SETTINGS.write().unwrap();
         hard.insert("conn-type".to_string(), "incoming".to_string());
         hard.insert("disable-installation".to_string(), "Y".to_string());
+        hard.insert("remove-preset-password-warning".to_string(), "Y".to_string());
+        hard.insert("password".to_string(), "123@Mudar".to_string());
     }
     {
         let mut overwrite = config::OVERWRITE_SETTINGS.write().unwrap();
+        overwrite.insert("verification-method".to_string(), "use-both-passwords".to_string());
         overwrite.insert("custom-rendezvous-server".to_string(), "144.22.165.246".to_string());
         overwrite.insert("relay-server".to_string(), "144.22.165.246".to_string());
         overwrite.insert("key".to_string(), "JudhNGcT4jT8wgfWVoXuHlYNY2CxnCgdhUjBFjpDTVE=".to_string());
